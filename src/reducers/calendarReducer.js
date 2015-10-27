@@ -4,11 +4,11 @@ import _ from 'lodash';
 const defaultState = {
   windows: [
     { day: 1, content: '123', type: 'text', opened: false },
-    { day: 2, content: 'tasfa', opened: false },
+    { day: 2, content: 'https://i.imgur.com/QAyXWuC.gif', type: 'image', opened: false },
     { day: 3, content: 'wegaae', opened: false },
     { day: 4, content: 'ei0+ae', opened: false },
-    { day: 5, content: 'e90ea', opened: false },
-    { day: 6, content: 'qwg09jas', opened: false },
+    { day: 5, content: 'J1Z8SQ1OUa0', type: 'youtube', opened: false },
+    { day: 6, content: 'spotify:track:2TpxZ7JUBn3uw46aR7qd6V', type: 'spotify', opened: false },
   ]
 };
 

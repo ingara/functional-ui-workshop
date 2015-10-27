@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class ClosedWindow extends React.Component {
+class ClosedWindow extends Component {
   render() {
     return (
       <div onClick={ this.props.onClick }>
@@ -9,5 +9,10 @@ class ClosedWindow extends React.Component {
     );
   }
 }
+
+ClosedWindow.propTypes = {
+  text: PropTypes.string,
+  onClick: PropTypes.func.isRequired
+};
 
 export default ClosedWindow;
