@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Window from '../containers/Window';
 
 function calendarMarkup(windows) {
-  return windows.map(window => <Window { ...window } />);
+  return windows.map(window => <Window key={ window.day } window={ window } />);
 }
 
 class Calendar extends Component {
@@ -12,6 +12,9 @@ class Calendar extends Component {
   }
 }
 
+Calendar.propTypes = {
+  windows: PropTypes.array
+};
 
 const mapStateToProps = ({ calendar }) => calendar;
 export default connect(mapStateToProps)(Calendar);

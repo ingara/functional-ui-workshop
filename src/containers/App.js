@@ -11,10 +11,4 @@ class App extends React.Component {
   }
 }
 
-App.propTypes = {
-  count: React.PropTypes.number,
-  increase: React.PropTypes.func,
-  decrease: React.PropTypes.func,
-};
-
 export default App;
