@@ -30,6 +30,7 @@
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-react": "^3.5.1",
     "express": "^4.13.3",
+    "json-server": "^0.8.2",
     "react-transform-hmr": "^1.0.1",
     "redux-devtools": "^2.1.5",
     "webpack": "^1.12.2",
