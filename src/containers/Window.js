@@ -7,14 +7,8 @@ import {
   SpotifyWindow,
   YouTubeWindow
 } from '../components';
-// import ClosedWindow from '../components/ClosedWindow';
-// import TextWindow from '../components/TextWindow';
-// import ImageWindow from '../components/ImageWindow';
-// import SpotifyWindow from '../components/SpotifyWindow';
-// import YouTubeWindow from '../components/YouTubeWindow';
-import { openWindow } from '../actions';
 
-console.log(ClosedWindow);
+import { openWindow } from '../actions';
 
 function getWindow(window) {
   const { content, type } = window;
@@ -36,13 +30,15 @@ class Window extends Component {
     const { window } = this.props;
 
     if (window.opened) {
-      return getWindow(window);
+      return <div className="window">{getWindow(window)}</div>;
     }
 
     return (
+      <div className="window">
       <ClosedWindow
         onClick={ () => this.props.openWindow(window.day) }
         text={ window.day } />
+        </div>
     );
   }
 }

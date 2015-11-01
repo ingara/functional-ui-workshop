@@ -12,7 +12,7 @@ const defaultState = {
   ]
 };
 
-export default function(state = defaultState, action) {
+export default function(state = defaultState, action = {}) {
   switch (action.type) {
   case ActionTypes.OPEN_WINDOW:
     const newWindows = _.map(state.windows, w => {

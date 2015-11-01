@@ -3,8 +3,8 @@ import React, { Component, PropTypes } from 'react';
 class ClosedWindow extends Component {
   render() {
     return (
-      <div onClick={ this.props.onClick }>
-        { this.props.text }
+      <div className="window-content" onClick={ this.props.onClick }>
+        <h1>{ this.props.text }</h1>
       </div>
     );
   }
