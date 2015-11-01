@@ -8,13 +8,21 @@ function calendarMarkup(windows) {
 
 class Calendar extends Component {
   render() {
-    return <div>{ calendarMarkup(this.props.windows) }</div>;
+    return (<div className={this.props.calendarClass}>{ calendarMarkup(this.props.windows) }</div>);
   }
 }
 
 Calendar.propTypes = {
-  windows: PropTypes.array
+  windows: PropTypes.array.isRequired,
+  calendarClass: PropTypes.string
 };
 
-const mapStateToProps = ({ calendar }) => calendar;
+function mapStateToProps({snowing, calendar}) {
+  let calendarClass = 'calendar';
+  if (snowing.active) {
+    calendarClass = calendarClass + ' calendar-snow';
+  }
+  return {calendarClass, windows: calendar.windows};
+}
+
 export default connect(mapStateToProps)(Calendar);

@@ -1,9 +1,9 @@
-export const SNOWING_TOGGLE = 'SNOWING_TOGGLE';
+export const TOGGLE_SNOW = 'TOGGLE_SNOW';
 export const OPEN_WINDOW = 'OPEN_WINDOW';
 
 export function toggleSnow() {
   return {
-    type: SNOWING_TOGGLE
+    type: TOGGLE_SNOW
   };
 }
 

@@ -1,3 +1,102 @@
-h1 {
-  color: red;
+/*FONTS*/
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+@import url(https://fonts.googleapis.com/css?family=Slabo+27px);
+
+
+body {
+  font-family: 'Slabo 27px', serif;
+  margin:0;
+  background-color: #333;
+  font-size: 14px;
 }
+
+h1 {
+  font-family: 'Slabo 27px', serif;
+  font-size: 3em;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-family: 'Slabo 27px', serif;
+  font-size: 2em;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: transparent;
+  height: 2em;
+  z-index: 3;
+}
+
+.window {
+  margin: 2em 2em;
+  padding: 1em;
+  display: inline-block;
+  background-color: #4B0082;
+  color: white;
+  text-align: center;
+  border: 0.1em solid white;
+}
+
+.window-content {
+  background-color: transparent;
+  padding: 4em;
+  font-size: 14px;
+}
+
+.window-content-open {
+  background-color: white;
+  color: black;
+}
+
+.iframe-spotify {
+  width: 230px;
+  height: 310px;
+}
+
+.image {
+  width: 22em;
+}
+
+.calendar-snow {
+  background: none;
+  font-family: Androgyne;
+  background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 2em;
+  width: 100%;
+  z-index:1;
+  -webkit-animation: snow 10s linear infinite;
+  -moz-animation: snow 10s linear infinite;
+  -ms-animation: snow 10s linear infinite;
+  animation: snow 10s linear infinite;
+}
+
+@keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-moz-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+}
+@-webkit-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-ms-keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+
