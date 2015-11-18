@@ -8,7 +8,7 @@ import {
   YouTubeWindow
 } from '../components';
 
-import { openWindow } from '../actions';
+import * as Actions from '../actions';
 
 function getWindow(window) {
   const { content, type } = window;
@@ -27,7 +27,7 @@ function getWindow(window) {
 
 class Window extends Component {
   render() {
-    const { window } = this.props;
+    const { window, openWindow } = this.props;
 
     if (window.opened) {
       return <div className="window">{getWindow(window)}</div>;
@@ -36,7 +36,7 @@ class Window extends Component {
     return (
       <div className="window">
       <ClosedWindow
-        onClick={ () => this.props.openWindow(window.day) }
+        onClick={ () => openWindow(window.day) }
         text={ window.day } />
         </div>
     );
@@ -48,4 +48,4 @@ Window.propTypes = {
   openWindow: PropTypes.func.isRequired
 };
 
-export default connect(() => ({}), { openWindow })(Window);
+export default connect(() => ({}), { openWindow: Actions.openWindow })(Window);

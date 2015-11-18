@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Calendar from './Calendar';
 import Header from '../components/Header';
 import { toggleSnow } from '../actions';
 
@@ -12,14 +11,15 @@ class App extends React.Component {
     return (
       <div>
         <Header onClick={() => this.props.toggleSnow() }/>
-        <Calendar/>
+        { this.props.children }
       </div>
     );
   }
 }
 
 App.propTypes = {
-  toggleSnow: React.PropTypes.func,
+  toggleSnow: React.PropTypes.func.isRequired,
+  children: React.PropTypes.node.isRequired
 };
 
 export default connect(() => ({}), { toggleSnow })(App);
