@@ -1,14 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class YouTubeWindow extends Component {
-  render() {
-    const url = `https://www.youtube.com/embed/${this.props.youtubeUri}`;
-    return <iframe width="350" height="250" src={ url } frameBorder="0" allowFullscreen></iframe>;
-  }
+function YouTubeWindow({ youtubeUri }) {
+  const url = `https://www.youtube.com/embed/${youtubeUri}`;
+  return <iframe width="350" height="250" src={ url } frameBorder="0" allowFullscreen></iframe>;
 }
 
 YouTubeWindow.propTypes = {
-  youtubeUri: PropTypes.string
+  youtubeUri: PropTypes.string.isRequired
 };
 
 export default YouTubeWindow;

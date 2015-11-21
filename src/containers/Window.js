@@ -1,4 +1,4 @@
-import React, { Component, PropTypes, } from 'react';
+import React, { PropTypes, } from 'react';
 import { connect } from 'react-redux';
 import {
   ClosedWindow,
@@ -25,22 +25,18 @@ function getWindow(window) {
   }
 }
 
-class Window extends Component {
-  render() {
-    const { window, openWindow } = this.props;
+function Window({ window, openWindow }) {
+  if (window.opened) {
+    return <div className="window">{ getWindow(window) }</div>;
+  }
 
-    if (window.opened) {
-      return <div className="window">{getWindow(window)}</div>;
-    }
-
-    return (
-      <div className="window">
+  return (
+    <div className="window">
       <ClosedWindow
         onClick={ () => openWindow(window.day) }
         text={ window.day } />
-        </div>
-    );
-  }
+    </div>
+  );
 }
 
 Window.propTypes = {
