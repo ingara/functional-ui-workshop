@@ -7,17 +7,18 @@ import {
   SpotifyWindow,
   YouTubeWindow
 } from '../components';
+import { windowTypes } from '../constants';
 
 import * as Actions from '../actions';
 
 function getWindow(window) {
   const { content, type } = window;
   switch (type) {
-  case 'image':
+  case windowTypes.IMAGE:
     return <ImageWindow url={ content } />;
-  case 'spotify':
+  case windowTypes.SPOTIFY:
     return <SpotifyWindow spotifyUri={ content } />;
-  case 'youtube':
+  case windowTypes.YOUTUBE:
     return <YouTubeWindow youtubeUri={ content } />;
   case 'text':
   default:
