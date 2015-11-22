@@ -1,8 +1,5 @@
 /*FONTS*/
-@import url('http://fonts.googleapis.com/css?family=Open+Sans');
-@import url(https://fonts.googleapis.com/css?family=Poiret+One);
 @import url(https://fonts.googleapis.com/css?family=Slabo+27px);
-
 
 body {
   font-family: 'Slabo 27px', serif;
@@ -25,9 +22,112 @@ h2 {
   padding: 0;
 }
 
-.header {
+h3 {
+  font-size: 1.5em;
+  font-weight: normal;
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding:0;
+}
+
+
+.nav-links {
+  text-align: center;
+  color: white;
+  font-size: 2em;
+}
+
+ul {
+  list-style: none;
+}
+
+.nav-links a {
+  color: white;
+}
+
+.nav-links li {
+  display: inline-block;
+  padding: 0;
+  margin: 0 1em;
+}
+
+ul.nav-links {
+  margin: 0;
+  padding: 0.7em 0 0 0;
+}
+
+form label {
+  text-transform: capitalize;
+  margin-right: 1em;
+}
+
+form {
+  display: inline-block;
+  margin: 2em;
+  font-size: 1.2em;
+  text-align: left;
+  color: white;
+  border: 0.2em solid white;
+  padding: 3em;
+}
+
+input[type=radio] {
+  margin: 0.5em 1em 0.5em 0;
+}
+
+select {
+  margin: 1em 0;
+}
+
+button {
+  display: inline-block;
+  position: relative;
+  overflow: visible;
+  width: auto;
+  zoom: 1;
+  padding: 7px 20px 8px 20px;
+  margin: 0 5px 5px 0;
+  border-radius: 0;
+  text-decoration: none;
+  text-shadow: none;
+  white-space: nowrap;
+  font-size: 1em;
+  letter-spacing: -.01em;
+  font-family: 'FoundryMonolineRegular',Arial,Helvetica,sans-serif;
+  line-height: 1.5;
+  color: white;
+  border: 0.2em white solid;
+  transition: all .2s ease-in-out;
   background-color: transparent;
-  height: 2em;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.button:hover {
+  background: #888;
+  color: #fff;
+}
+
+button[disabled=disabled], button:disabled {
+  opacity: 0.5;
+}
+
+.admin-wrapper {
+  text-align: center;
+  font-size: 14px;
+}
+
+.overview {
+  display: inline-block;
+  margin: 2em;
+  padding: 2em;
+  border: 0.2em solid white;
+}
+
+.snow-bar {
+  background-color: transparent;
+  height: 1.5em;
   z-index: 3;
 }
 
@@ -96,6 +196,4 @@ h2 {
   100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }
 
-form label {
-  text-transform: capitalize;
-}
+

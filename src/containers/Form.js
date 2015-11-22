@@ -55,10 +55,11 @@ function Form({ validDays, createWindow, state, updateState }) {
 
   return (
     <form>
+      <h3>New Window</h3>
       <TypeSelect types={ types } selectedType={ state.type } onChange={ handleTypeChange } />
       <DaySelect days={ validDays } selectedDay={ state.day } onChange={ handleDayChange } />
       <InputField value={ state.text } validationError={ state.validationError } onChange={ handleTextChange } />
-      <input type="submit" onClick={ handleSubmit } value="Save" disabled={ !canSubmit } />
+      <button type="submit" onClick={ handleSubmit } disabled={ !canSubmit }> Save</button>
     </form>
   );
 }
