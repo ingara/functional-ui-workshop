@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 
-function InputField({ valueLink, validationError }) {
+function InputField({ value, onChange, validationError }) {
+  const valueLink = {
+    value,
+    requestChange: onChange
+  };
   return (
     <div>
       <input type="text" valueLink={ valueLink } />
@@ -10,10 +14,8 @@ function InputField({ valueLink, validationError }) {
 }
 
 InputField.propTypes = {
-  valueLink: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    requestChange: PropTypes.func.isRequired
-  }).isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   validationError: PropTypes.string
 };
 
