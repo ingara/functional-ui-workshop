@@ -1,5 +1,4 @@
 import * as ActionTypes from '../actions';
-import _ from 'lodash';
 
 const defaultState = {
   windows: [
@@ -20,14 +19,21 @@ const defaultState = {
 
 export default function(state = defaultState, action = {}) {
   switch (action.type) {
-  case ActionTypes.OPEN_WINDOW:
-    const newWindows = _.map(state.windows, w => {
-      if (action.day === w.day) {
-        return Object.assign({}, w, { opened: true });
-      }
-      return w;
+  case ActionTypes.WINDOW_OPEN:
+    return Object.assign({}, state, {
+      windows: state.windows.map(w =>
+        action.day === w.day ?
+          Object.assign({}, w, { opened: true }) :
+          w
+      )
     });
-    return Object.assign({}, state, { windows: newWindows });
+  case ActionTypes.WINDOW_CREATED:
+    return Object.assign({}, state, {
+      windows: [
+        ...state.windows,
+        action.window
+      ]
+    });
   default:
     return state;
   }
