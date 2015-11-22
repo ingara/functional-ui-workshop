@@ -11,11 +11,11 @@ function DaySelect({ onChange, days, selectedDay }) {
 
   return (
     <div>
+      <label htmlFor="daySelect">Day</label>
       <select name="day" id="daySelect" valueLink={ valueLink } defaultValue="none">
         <option label="Choose day" value="none" disabled />
         { dayOptions }
       </select>
-      <label htmlFor="daySelect">Day</label>
     </div>
   );
 }

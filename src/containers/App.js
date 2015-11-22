@@ -1,21 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Header from '../components/Header';
-import * as Actions from '../actions';
+import Nav from '../components/Nav';
 
-function App({ children, toggleSnow }) {
+function App({ children}) {
   return (
     <div>
-      <Header onClick={ toggleSnow } />
+      <Nav/>
       { children }
     </div>
   );
 }
 
 App.propTypes = {
-  toggleSnow: React.PropTypes.func.isRequired,
   children: React.PropTypes.node.isRequired
 };
 
-export default connect(() => ({}), { toggleSnow: Actions.toggleSnow })(App);
+export default connect(() => ({}))(App);

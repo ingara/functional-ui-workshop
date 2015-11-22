@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import App from './containers/App';
-import Form from './containers/Form';
+import Admin from './containers/Admin';
 import Calendar from './containers/Calendar';
 
 const history = createBrowserHistory();
@@ -10,7 +10,7 @@ const history = createBrowserHistory();
 export default () => (
   <Router history={ history }>
     <Route path="/" component={ App }>
-      <Route path="/form" component={ Form } />
+      <Route path="/form" component={ Admin } />
       <IndexRoute component={ Calendar } />
     </Route>
   </Router>
