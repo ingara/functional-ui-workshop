@@ -1,21 +1,22 @@
 import React, { PropTypes } from 'react';
 
-export default class Foo extends React.Component {
-  render() {
-    const { valueLink, validationError } = this.props;
-    return (
-      <div>
-        <input type="text" valueLink={ valueLink } />
-        <div>{ validationError }</div>
-      </div>
-    );
-  }
+function InputField({ value, onChange, validationError }) {
+  const valueLink = {
+    value,
+    requestChange: onChange
+  };
+  return (
+    <div>
+      <input type="text" valueLink={ valueLink } />
+      <div>{ validationError }</div>
+    </div>
+  );
 }
 
-Foo.propTypes = {
-  valueLink: PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    requestChange: PropTypes.func.isRequired
-  }).isRequired,
+InputField.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   validationError: PropTypes.string
 };
+
+export default InputField;

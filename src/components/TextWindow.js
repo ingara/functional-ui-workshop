@@ -1,13 +1,15 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class TextWindow extends Component {
-  render() {
-    return <div className="window-content window-content-open"><h2 className="heading">{ this.props.content }</h2></div>;
-  }
+function TextWindow({ content }) {
+  return (
+    <div className="window-content window-content-open">
+      <h2>{ content }</h2>
+    </div>
+  );
 }
 
 TextWindow.propTypes = {
-  content: PropTypes.string
+  content: PropTypes.string.isRequired
 };
 
 export default TextWindow;

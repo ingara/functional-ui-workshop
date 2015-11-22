@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Window from '../containers/Window';
 import { toggleSnow } from '../actions';
@@ -8,14 +8,11 @@ function calendarMarkup(windows) {
   return windows.map(window => <Window key={ window.day } window={ window } />);
 }
 
-class Calendar extends Component {
-  render() {
-    return(
-      <div>
-        <SnowBar onClick={() => this.props.toggleSnow() }/>
-        <div className={this.props.calendarClass}>{ calendarMarkup(this.props.windows) }</div>
-      </div>);
-  }
+function Calendar({ calendarClass, windows, toggleSnow }) {
+  return (<div>
+    <SnowBar onClick={() => toggleSnow()}
+    <div className={ calendarClass }>{ calendarMarkup(windows) }</div>
+  </div>);
 }
 
 Calendar.propTypes = {
@@ -28,7 +25,10 @@ function mapStateToProps({snowing, calendar}) {
   if (snowing.active) {
     calendarClass = calendarClass + ' calendar-snow';
   }
-  return {calendarClass, windows: calendar.windows};
+  return {
+    calendarClass,
+    windows: calendar.windows
+  };
 }
 
 export default connect(mapStateToProps, {toggleSnow})(Calendar);

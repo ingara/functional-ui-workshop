@@ -1,17 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class ClosedWindow extends Component {
-  render() {
-    return (
-      <div className="window-content" onClick={ this.props.onClick }>
-        <h1 className="heading">{ this.props.text }</h1>
-      </div>
-    );
-  }
+function ClosedWindow({ text, onClick }) {
+  return (
+    <div className="window-content" onClick={ onClick }>
+      <h1>{ text }</h1>
+    </div>
+  );
 }
 
 ClosedWindow.propTypes = {
-  text: PropTypes.string,
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
   onClick: PropTypes.func.isRequired
 };
 
