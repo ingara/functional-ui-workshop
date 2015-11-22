@@ -4,7 +4,7 @@ class ClosedWindow extends Component {
   render() {
     return (
       <div className="window-content" onClick={ this.props.onClick }>
-        <h1>{ this.props.text }</h1>
+        <h1 className="heading">{ this.props.text }</h1>
       </div>
     );
   }

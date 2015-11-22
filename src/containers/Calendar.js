@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Window from '../containers/Window';
+import { toggleSnow } from '../actions';
+import SnowBar from '../components/SnowBar';
 
 function calendarMarkup(windows) {
   return windows.map(window => <Window key={ window.day } window={ window } />);
@@ -8,7 +10,11 @@ function calendarMarkup(windows) {
 
 class Calendar extends Component {
   render() {
-    return (<div className={this.props.calendarClass}>{ calendarMarkup(this.props.windows) }</div>);
+    return(
+      <div>
+        <SnowBar onClick={() => this.props.toggleSnow() }/>
+        <div className={this.props.calendarClass}>{ calendarMarkup(this.props.windows) }</div>
+      </div>);
   }
 }
 
@@ -25,4 +31,4 @@ function mapStateToProps({snowing, calendar}) {
   return {calendarClass, windows: calendar.windows};
 }
 
-export default connect(mapStateToProps)(Calendar);
+export default connect(mapStateToProps, {toggleSnow})(Calendar);

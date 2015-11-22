@@ -15,7 +15,7 @@ class Form extends React.Component {
     return (
       <form>
         <InputField valueLink={{ value: inputVal, requestChange: handleChange }} validationError={ data.validationError } />
-        <input type="submit" onClick={ handleSubmit } value="hei" />
+        <button type="submit" onClick={ handleSubmit } value="hei" />
       </form>
     );
   }
