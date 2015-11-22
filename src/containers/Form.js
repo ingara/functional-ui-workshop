@@ -9,21 +9,24 @@ import {
   isValidSpotifyUrl,
   isValidYouTubeUrl
 } from '../utils/validation';
+import { windowTypes } from '../constants';
 
 function validate({ text, type }) {
   switch (type) {
-  case 'text':
+  case windowTypes.TEXT:
     return isValidText(text) ? null : 'Invalid text';
-  case 'image':
+  case windowTypes.IMAGE:
     return isValidImageUrl(text) ? null : 'Invalid image url';
-  case 'spotify':
+  case windowTypes.SPOTIFY:
     return isValidSpotifyUrl(text) ? null : 'Invalid Spotify url';
-  case 'youtube':
+  case windowTypes.YOUTUBE:
     return isValidYouTubeUrl(text) ? null : 'Invalid YouTube url';
   default:
     return 'Invalid type';
   }
 }
+
+const initialState = { text: '', type: 'text' };
 
 function Form({ validDays, createWindow, state, updateState }) {
   const handleTypeChange = type => {
@@ -39,10 +42,16 @@ function Form({ validDays, createWindow, state, updateState }) {
   const handleSubmit = e => {
     e.preventDefault();
     createWindow(Object.assign({}, state, { day: parseInt(state.day) }));
+    updateState(initialState);
   };
 
   const canSubmit = state.validationError === null && state.day;
-  const types = [ 'text', 'image', 'spotify', 'youtube' ];
+  const types = [
+    windowTypes.TEXT,
+    windowTypes.IMAGE,
+    windowTypes.SPOTIFY,
+    windowTypes.YOUTUBE,
+  ];
 
   return (
     <form>
@@ -69,5 +78,5 @@ function mapStateToProps({ calendar }) {
 
 export default compose(
   connect(mapStateToProps, { createWindow: Actions.createWindow }),
-  withState({ text: '', type: 'text' })
+  withState(initialState)
 )(Form);
