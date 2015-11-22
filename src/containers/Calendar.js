@@ -10,7 +10,7 @@ function calendarMarkup(windows) {
 
 function Calendar({ calendarClass, windows, toggleSnow }) {
   return (<div>
-    <SnowBar onClick={() => toggleSnow()}
+    <SnowBar onClick={() => toggleSnow()}/>
     <div className={ calendarClass }>{ calendarMarkup(windows) }</div>
   </div>);
 }
