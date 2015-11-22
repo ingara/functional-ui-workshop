@@ -1,13 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class ImageWindow extends Component {
-  render() {
-    return <img src={ this.props.url } className="image"/>;
-  }
+function ImageWindow({ url }) {
+  return <img src={ url } className="image"/>;
 }
 
 ImageWindow.propTypes = {
-  url: PropTypes.string
+  url: PropTypes.string.isRequired
 };
 
 export default ImageWindow;

@@ -1,24 +1,21 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as Actions from '../actions';
-import InputField from '../components/InputField';
+import { InputField } from '../components';
 
-class Form extends React.Component {
-  render() {
-    const { data, formChange, formSubmit } = this.props;
-    const inputVal = data.text;
-    const handleChange = textVal => formChange({ text: textVal });
-    const handleSubmit = e => {
-      e.preventDefault();
-      formSubmit();
-    };
-    return (
-      <form>
-        <InputField valueLink={{ value: inputVal, requestChange: handleChange }} validationError={ data.validationError } />
-        <input type="submit" onClick={ handleSubmit } value="hei" />
-      </form>
-    );
-  }
+function Form({ data, formChange, formSubmit }) {
+  const handleChange = textVal => formChange({ text: textVal });
+  const handleSubmit = e => {
+    e.preventDefault();
+    formSubmit();
+  };
+
+  return (
+    <form>
+      <InputField valueLink={{ value: data.text, requestChange: handleChange }} validationError={ data.validationError } />
+      <input type="submit" onClick={ handleSubmit } value="hei" />
+    </form>
+  );
 }
 
 Form.propTypes = {
@@ -32,10 +29,8 @@ Form.propTypes = {
 function mapStateToProps({ form }) {
   return { data: form };
 }
-function bindActionCreators() {
-  return {
-    formChange: Actions.formChange,
-    formSubmit: Actions.formSubmit
-  };
-}
-export default connect(mapStateToProps, bindActionCreators())(Form);
+const actionCreators = {
+  formChange: Actions.formChange,
+  formSubmit: Actions.formSubmit
+};
+export default connect(mapStateToProps, actionCreators)(Form);

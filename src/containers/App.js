@@ -2,19 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Header from '../components/Header';
-import { toggleSnow } from '../actions';
+import * as Actions from '../actions';
 
-
-class App extends React.Component {
-
-  render() {
-    return (
-      <div>
-        <Header onClick={() => this.props.toggleSnow() }/>
-        { this.props.children }
-      </div>
-    );
-  }
+function App({ children, toggleSnow }) {
+  return (
+    <div>
+      <Header onClick={ toggleSnow } />
+      { children }
+    </div>
+  );
 }
 
 App.propTypes = {
@@ -22,4 +18,4 @@ App.propTypes = {
   children: React.PropTypes.node.isRequired
 };
 
-export default connect(() => ({}), { toggleSnow })(App);
+export default connect(() => ({}), { toggleSnow: Actions.toggleSnow })(App);

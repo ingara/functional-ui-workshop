@@ -1,14 +1,12 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-class SpotifyWindow extends Component {
-  render() {
-    const url = `https://embed.spotify.com/?uri=${this.props.spotifyUri}`;
-    return <iframe src={ url } className="iframe-spotify" frameBorder="0" allowTransparency="true"></iframe>
-  }
+function SpotifyWindow({ spotifyUri }) {
+  const url = `https://embed.spotify.com/?uri=${spotifyUri}`;
+  return <iframe src={ url } className="iframe-spotify" frameBorder="0" allowTransparency="true"></iframe>;
 }
 
 SpotifyWindow.propTypes = {
-  spotifyUri: PropTypes.string
+  spotifyUri: PropTypes.string.isRequired
 };
 
 export default SpotifyWindow;
