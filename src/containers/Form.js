@@ -26,6 +26,8 @@ function validate({ text, type }) {
   }
 }
 
+const initialState = { text: '', type: 'text' };
+
 function Form({ validDays, createWindow, state, updateState }) {
   const handleTypeChange = type => {
     const { text } = state;
@@ -40,6 +42,7 @@ function Form({ validDays, createWindow, state, updateState }) {
   const handleSubmit = e => {
     e.preventDefault();
     createWindow(Object.assign({}, state, { day: parseInt(state.day) }));
+    updateState(initialState);
   };
 
   const canSubmit = state.validationError === null && state.day;
@@ -75,5 +78,5 @@ function mapStateToProps({ calendar }) {
 
 export default compose(
   connect(mapStateToProps, { createWindow: Actions.createWindow }),
-  withState({ text: '', type: 'text' })
+  withState(initialState)
 )(Form);
