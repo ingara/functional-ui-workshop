@@ -26,3 +26,24 @@ export function createWindow(data) {
     }
   };
 }
+
+export function loadWindowsSuccess(response) {
+  debugger;
+  return {
+    type: 'LOAD_WINDOWS_SUCCESS',
+    response
+  };
+}
+
+export function loadWindowsFailure(error) {
+  return {
+    type: 'LOAD_WINDOWS_FAILURE',
+    error
+  };
+}
+
+export function loadWindowsRequest(userId) {
+  return {
+    type: 'LOAD_WINDOWS_REQUEST',
+  };
+}
