@@ -15,13 +15,13 @@
     {
       "day": 11,
       "content": "BEKK julebord!",
-      "type": "image",
+      "type": "text",
       "opened": false
     },
     {
       "day": 12,
       "content": "Bare 12 dager igjen til jul",
-      "type": "image",
+      "type": "text",
       "opened": false
     },
     {

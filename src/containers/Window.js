@@ -9,7 +9,7 @@ import {
 } from '../components';
 import { windowTypes } from '../constants';
 
-import * as Actions from '../actions';
+import { AppActions } from '../actions';
 
 function getWindow(window) {
   const { content, type } = window;
@@ -45,4 +45,4 @@ Window.propTypes = {
   openWindow: PropTypes.func.isRequired
 };
 
-export default connect(() => ({}), { openWindow: Actions.openWindow })(Window);
+export default connect(null, { openWindow: AppActions.openWindow })(Window);

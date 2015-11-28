@@ -21,7 +21,7 @@ function noCache(req, res, next) {
 
 app.use('/api', noCache, jsonServer.router(__dirname + '/db.json'));
 
-app.use('/static', express.static(__dirname + '/static', options));
+app.use('/static', express.static(__dirname + '/static'));
 
 // Send index.html for all other routes
 app.use(function(req, res) {

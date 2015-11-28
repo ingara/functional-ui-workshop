@@ -1,10 +1,8 @@
 import React, { PropTypes } from 'react';
-import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import superagent from 'superagent';
+import { AppActions } from '../actions';
 
 import Window from '../containers/Window';
-import * as Actions from '../actions';
 import SnowBar from '../components/SnowBar';
 
 function calendarMarkup(windows) {
@@ -35,8 +33,6 @@ function mapStateToProps({snowing, calendar}) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Actions, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, {
+  toggleSnow: AppActions.toggleSnow
+})(Calendar);
