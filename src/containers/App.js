@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Nav from '../components/Nav';
 
-function App({ children}) {
+function App({children}) {
   return (
     <div>
       <Nav/>
@@ -16,4 +16,4 @@ App.propTypes = {
   children: React.PropTypes.node.isRequired
 };
 
-export default connect(() => ({}))(App);
+export default App;

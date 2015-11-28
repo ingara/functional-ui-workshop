@@ -4,8 +4,8 @@ import Overview from './Overview';
 
 function Admin() {
   return (<div className="admin-wrapper">
-    <Overview/>
     <Form/>
+    <Overview/>
   </div>);
 }
 
