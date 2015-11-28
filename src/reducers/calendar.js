@@ -1,4 +1,4 @@
-import * as ActionTypes from '../actions';
+import { AppActions, ApiActions } from '../actions';
 
 const defaultState = {
   windows: [
@@ -19,7 +19,7 @@ const defaultState = {
 
 export default function(state = defaultState, action = {}) {
   switch (action.type) {
-  case ActionTypes.WINDOW_OPEN:
+  case AppActions.WINDOW_OPEN:
     return Object.assign({}, state, {
       windows: state.windows.map(w =>
         action.day === w.day ?
@@ -27,23 +27,16 @@ export default function(state = defaultState, action = {}) {
           w
       )
     });
-  case ActionTypes.WINDOW_CREATED:
+  case ApiActions.WINDOW_CREATE_SUCCESS:
     return Object.assign({}, state, {
       windows: [
         ...state.windows,
         action.window
       ]
     });
-  default:
-    return state;
-  }
-}
-
-export default function(state = defaultState, action = {}) {
-  switch (action.type) {
-  case ActionTypes.WINDOWS_LOAD_SUCCESS:
+  case ApiActions.WINDOWS_FETCH_SUCCESS:
     return Object.assign({}, state, {
-      windows: JSON.parse(action.response),
+      windows: action.windows
     });
   default:
     return state;
