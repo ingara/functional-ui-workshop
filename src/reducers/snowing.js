@@ -1,4 +1,4 @@
-import { TOGGLE_SNOW } from '../actions';
+import { AppActions } from '../actions';
 
 const defaultState = {
   active: false
@@ -6,7 +6,7 @@ const defaultState = {
 
 export default function(state = defaultState, action = {}) {
   switch (action.type) {
-  case TOGGLE_SNOW:
+  case AppActions.TOGGLE_SNOW:
     return Object.assign({}, state, {active: !state.active} );
   default:
     return state;

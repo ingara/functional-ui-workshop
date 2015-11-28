@@ -5,15 +5,17 @@ import { AppActions } from '../actions';
 import Window from '../containers/Window';
 import SnowBar from '../components/SnowBar';
 
-function calendarMarkup(windows) {
-  return windows.map(window => <Window key={ window.day } window={ window } />);
-}
-
 function Calendar({ calendarClass, windows, toggleSnow}) {
-  return (<div>
-    <SnowBar onClick={() => toggleSnow()}/>
-    <div className={ calendarClass }>{ calendarMarkup(windows) }</div>
-  </div>);
+  const windowsComponents = windows.map(w => <Window key={ w.day } window={ w } />);
+
+  return (
+    <div>
+      <SnowBar onClick={() => toggleSnow()}/>
+      <div className={ calendarClass }>
+        { windowsComponents }
+      </div>
+    </div>
+  );
 }
 
 Calendar.propTypes = {
