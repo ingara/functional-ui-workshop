@@ -12,7 +12,14 @@ var compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }));
 app.use(webpackHotMiddleware(compiler));
 
-app.use('/api', jsonServer.router(__dirname + '/db.json'));
+function noCache(req, res, next) {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next();
+}
+
+app.use('/api', noCache, jsonServer.router(__dirname + '/db.json'));
 
 app.use('/static', express.static(__dirname + '/static'));
 
