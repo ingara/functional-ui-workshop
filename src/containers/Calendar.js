@@ -11,19 +11,7 @@ function calendarMarkup(windows) {
   return windows.map(window => <Window key={ window.day } window={ window } />);
 }
 
-function Calendar({ calendarClass, windows, toggleSnow, loadWindowsFailure, loadWindowsSuccess, loadWindowsRequest }) {
-  const loadData = () => {
-    const url = '/api/windows';
-
-    loadWindowsRequest();
-
-    superagent
-      .get(url)
-      .end(error => loadWindowsFailure(error), response => loadWindowsSuccess(response));
-  }
-
-  loadData();
-
+function Calendar({ calendarClass, windows, toggleSnow}) {
   return (<div>
     <SnowBar onClick={() => toggleSnow()}/>
     <div className={ calendarClass }>{ calendarMarkup(windows) }</div>

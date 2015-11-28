@@ -38,3 +38,14 @@ export default function(state = defaultState, action = {}) {
     return state;
   }
 }
+
+export default function(state = defaultState, action = {}) {
+  switch (action.type) {
+  case ActionTypes.WINDOWS_LOAD_SUCCESS:
+    return Object.assign({}, state, {
+      windows: JSON.parse(action.response),
+    });
+  default:
+    return state;
+  }
+}

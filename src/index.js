@@ -7,6 +7,7 @@ import Router from './router';
 
 const store = configureStore();
 
+
 render(
   <Provider store={ store }>
     <div>
