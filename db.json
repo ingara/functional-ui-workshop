@@ -1,5 +1,34 @@
 {
-  "counter": {
-    "count": 0
-  }
+  "windows": [
+    {
+      "day": 9,
+      "content": "I dag skal du ut og kose deg med faggruppa",
+      "type": "text",
+      "opened": false
+    },
+    {
+      "day": 10,
+      "content": "https://i.imgur.com/QAyXWuC.gif",
+      "type": "image",
+      "opened": false
+    },
+    {
+      "day": 11,
+      "content": "BEKK julebord!",
+      "type": "image",
+      "opened": false
+    },
+    {
+      "day": 12,
+      "content": "Bare 12 dager igjen til jul",
+      "type": "image",
+      "opened": false
+    },
+    {
+      "day": 13,
+      "content": "J1Z8SQ1OUa0",
+      "type": "youtube",
+      "opened": false
+    }
+  ]
 }
