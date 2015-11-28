@@ -2,7 +2,12 @@ var express = require('express');
 var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
-var config = require('./webpack.config');
+var config;
+if (process.env.NODE_ENV === 'solution') {
+  config = require('./webpack.solution.config');
+} else {
+  config = require('./webpack.config');
+}
 var jsonServer = require('json-server');
 
 var app = express();
