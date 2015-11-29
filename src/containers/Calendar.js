@@ -5,34 +5,34 @@ import { AppActions } from '../actions';
 import Window from '../containers/Window';
 import SnowBar from '../components/SnowBar';
 
-function calendarMarkup(windows) {
-  return windows.map(window => <Window key={ window.day } window={ window } />);
-}
+function Calendar({ calendarClass, windows, dispatch }) {
+  const windowsComponents = windows.map(w => <Window key={ w.day } window={ w } />);
 
-function Calendar({ calendarClass, windows, toggleSnow}) {
-  return (<div>
-    <SnowBar onClick={() => toggleSnow()}/>
-    <div className={ calendarClass }>{ calendarMarkup(windows) }</div>
-  </div>);
+  return (
+    <div>
+      <SnowBar onClick={ () => dispatch(AppActions.toggleSnow()) }/>
+      <div className={ calendarClass }>
+        { windowsComponents }
+      </div>
+    </div>
+  );
 }
 
 Calendar.propTypes = {
   windows: PropTypes.array.isRequired,
-  calendarClass: PropTypes.string,
-  toggleSnow: PropTypes.func.isRequired,
+  calendarClass: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired
 };
 
-function mapStateToProps({snowing, calendar}) {
+function mapStateToProps({ snowing, windows }) {
   let calendarClass = 'calendar';
   if (snowing.active) {
     calendarClass = calendarClass + ' calendar-snow';
   }
   return {
     calendarClass,
-    windows: calendar.windows,
+    windows,
   };
 }
 
-export default connect(mapStateToProps, {
-  toggleSnow: AppActions.toggleSnow
-})(Calendar);
+export default connect(mapStateToProps)(Calendar);

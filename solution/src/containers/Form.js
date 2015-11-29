@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import * as Actions from '../actions';
+import { ApiActions } from '../actions';
 import { InputField, DaySelect, TypeSelect } from '../components';
 import { withState, compose, range } from '../utils';
 import {
@@ -41,7 +41,12 @@ function Form({ validDays, createWindow, state, updateState }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    createWindow(Object.assign({}, state, { day: parseInt(state.day) }));
+    const window = {
+      day: parseInt(state.day),
+      content: state.text,
+      type: state.type
+    };
+    createWindow(window);
     updateState(initialState);
   };
 
@@ -71,13 +76,15 @@ Form.propTypes = {
   updateState: PropTypes.func.isRequired
 };
 
-function mapStateToProps({ calendar }) {
+function mapStateToProps({ windows }) {
+  const windowDoesNotExists = day => windows.findIndex(w => w.day === day) === -1;
+  const validDays = range(24).filter(windowDoesNotExists);
   return {
-    validDays: range(31).filter(day => calendar.windows.findIndex(w => w.day === day) === -1)
+    validDays
   };
 }
 
 export default compose(
-  connect(mapStateToProps, { createWindow: Actions.createWindow }),
+  connect(mapStateToProps, { createWindow: ApiActions.createWindow }),
   withState(initialState)
 )(Form);

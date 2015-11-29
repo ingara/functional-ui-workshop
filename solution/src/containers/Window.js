@@ -11,7 +11,7 @@ import { windowTypes } from '../constants';
 
 import { AppActions } from '../actions';
 
-function getWindow(window) {
+function getOpenWindow(window) {
   const { content, type } = window;
   switch (type) {
   case windowTypes.IMAGE:
@@ -27,15 +27,15 @@ function getWindow(window) {
 }
 
 function Window({ window, openWindow }) {
-  if (window.opened) {
-    return <div className="window">{ getWindow(window) }</div>;
-  }
+  const windowComponent = window.opened ?
+    getOpenWindow(window) :
+    <ClosedWindow
+      onClick={ () => openWindow(window.day) }
+      text={ window.day } />;
 
   return (
     <div className="window">
-      <ClosedWindow
-        onClick={ () => openWindow(window.day) }
-        text={ window.day } />
+      { windowComponent }
     </div>
   );
 }

@@ -6,13 +6,14 @@ import Window from '../containers/Window';
 import SnowBar from '../components/SnowBar';
 
 function Calendar({ calendarClass, windows, toggleSnow}) {
-  const windowsComponents = windows.map(w => <Window key={ w.day } window={ w } />);
+  const windowComponents = windows
+    .map(w => <Window key={ w.day } window={ w } />);
 
   return (
     <div>
-      <SnowBar onClick={() => toggleSnow()}/>
+      <SnowBar onClick={ toggleSnow }/>
       <div className={ calendarClass }>
-        { windowsComponents }
+        { windowComponents }
       </div>
     </div>
   );
@@ -24,14 +25,14 @@ Calendar.propTypes = {
   toggleSnow: PropTypes.func.isRequired,
 };
 
-function mapStateToProps({snowing, calendar}) {
+function mapStateToProps({ snowing, windows }) {
   let calendarClass = 'calendar';
   if (snowing.active) {
     calendarClass = calendarClass + ' calendar-snow';
   }
   return {
     calendarClass,
-    windows: calendar.windows,
+    windows
   };
 }
 

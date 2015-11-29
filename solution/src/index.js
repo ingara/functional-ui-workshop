@@ -10,8 +10,6 @@ const store = configureStore();
 
 store.dispatch(ApiActions.fetchWindows());
 
-console.log('SOLYUTIONASA:OPDJA');
-
 render(
   <Provider store={ store }>
     <div>
