@@ -19,7 +19,7 @@ Start the webserver:
 npm start
 ```
 
-Open the propject in your favorite editor
+Open the project in your favorite editor
 
 ## Tasks
 ### 1. Implement your first action creator: `openWindow()`
