@@ -117,6 +117,6 @@ A pure component generally has no internal state. What it renders is fully drive
 When it comes to state and forms, the top-down unidirectional flow pattern becomes tricky. Applying this principle to redux means that all state information is put in the store, and all events (mutations of state) trigger actions. Thus, there should be no need to use React's `setState()`. However, when it comes to forms this principle is debatable, emitting an action on every key stroke of an input field seems a bit extreme. We think a better approach is to create a higher order componet that can be concerned with the state of the form. In the solution we give an example of this, where we have used function composition to create a higher order component that takes care of the form's state.
 
 ### 6. More async action creators
-As you might have noticed, the windows created in the form on the Admin page disappear on refresh. This is because they are only stored in the state, see reducers/windows.js. It would be better if the  action  
+As you might have noticed, the windows created in the form on the Admin page disappear on refresh. This is because they are only stored in the state, see reducers/windows.js. It would be better if the action updated the database through an async api call. Based on what you have learned til now, try first changing the `createWindow()` to an async action creator that updates the mock database. Next, implement functionality for the dead delete button in the Admin panel.     
 
 
