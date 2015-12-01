@@ -29,6 +29,26 @@
       "content": "J1Z8SQ1OUa0",
       "type": "youtube",
       "opened": false
+    },
+    { "day": 14,
+      "content": "http://www.tu.no/incoming/2013/12/17/1200023726.jpg/alternates/h1080/1200023726.jpg",
+      "type": "image",
+      "opened": false
+    },
+    { "day": 15,
+      "content": "spotify:track:2TpxZ7JUBn3uw46aR7qd6V",
+      "type": "spotify",
+      "opened": false
+    },
+    { "day": 16,
+      "content": "spotify:track:2FRnf9qhLbvw8fu4IBXx78",
+      "type": "spotify",
+      "opened": false
+    },
+    { "day": 19,
+      "content": "Bare syv dager til jul!!",
+      "type": "text",
+      "opened": false
     }
   ]
 }
