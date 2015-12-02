@@ -5,6 +5,7 @@ function TypeSelect({ onChange, types, selectedType }) {
     value: selectedType === type,
     requestChange: () => onChange(type)
   });
+
   const radios = types.map(type => {
     const id = `windowtype${type}`;
     return (
@@ -19,6 +20,7 @@ function TypeSelect({ onChange, types, selectedType }) {
       </li>
     );
   });
+
   return <ul>{ radios }</ul>;
 }
 

@@ -5,14 +5,15 @@ import { AppActions } from '../actions';
 import Window from '../containers/Window';
 import SnowBar from '../components/SnowBar';
 
-function Calendar({ calendarClass, windows, dispatch }) {
-  const windowsComponents = windows.map(w => <Window key={ w.day } window={ w } />);
+function Calendar({ calendarClass, windows, toggleSnow}) {
+  const windowComponents = windows
+    .map(w => <Window key={ w.day } window={ w } />);
 
   return (
     <div>
-      <SnowBar onClick={ () => dispatch(AppActions.toggleSnow()) }/>
+      <SnowBar onClick={ toggleSnow }/>
       <div className={ calendarClass }>
-        { windowsComponents }
+        { windowComponents }
       </div>
     </div>
   );
@@ -20,8 +21,8 @@ function Calendar({ calendarClass, windows, dispatch }) {
 
 Calendar.propTypes = {
   windows: PropTypes.array.isRequired,
-  calendarClass: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  calendarClass: PropTypes.string,
+  toggleSnow: PropTypes.func.isRequired,
 };
 
 function mapStateToProps({ snowing, windows }) {
@@ -31,8 +32,10 @@ function mapStateToProps({ snowing, windows }) {
   }
   return {
     calendarClass,
-    windows,
+    windows
   };
 }
 
-export default connect(mapStateToProps)(Calendar);
+export default connect(mapStateToProps, {
+  toggleSnow: AppActions.toggleSnow
+})(Calendar);
