@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Form from './Form';
-import Overview from './Overview';
+import Overview from './WindowList';
 
 function Admin() {
   return (

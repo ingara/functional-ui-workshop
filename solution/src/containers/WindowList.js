@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import sortBy from 'lodash/collection/sortBy';
 
-function Overview({ windows }) {
+function WindowList({ windows }) {
   const windowRows = windows.map(window =>
     <tr className="editable-window" key={ window.day }>
       <td>#{ window.day }</td>
@@ -36,8 +36,8 @@ function mapStateToProps({ windows }) {
   };
 }
 
-Overview.propTypes = {
+WindowList.propTypes = {
   windows: PropTypes.array.isRequired,
 };
 
-export default connect(mapStateToProps)(Overview);
+export default connect(mapStateToProps)(WindowList);
