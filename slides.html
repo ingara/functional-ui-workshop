@@ -9,6 +9,9 @@
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
       body { font-family: 'Droid Serif'; }
+      h1 {
+        text-align: center;
+      }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
@@ -21,16 +24,15 @@
 
 class: center, middle
 
-# Title
+# Functional UI workshop
 
 ---
 
 # Agenda
 
-## 1. Functional UI
-## 2. Data flow
-## 3. Redux
-
+### 1. Functional UI
+### 2. Data flow
+### 3. Redux
 
 ---
 
@@ -39,11 +41,11 @@ class: center, middle
 ## Pure building blocks
 ## Testability
 
-
 ---
 
-# Data flow
-## Unidirectional data flow
+# Unidirectional data flow
+
+## Basically the same in Redux and Flux
 
 ```
          +------+
@@ -58,71 +60,157 @@ class: center, middle
 +-------+        +--------+
 ```
 
+---
 
-
-# Data flow
-## Redux and flux
-## Single state atom = single source of truth
+# Single state atom
+## Single source of truth
 ## Data propagates down from the top
-## A given in Redux, but possible...
 ## Easy to follow data flow
+## Core concept in Redux, possible in Flux
+
+???
+
+Single source: easy to know at any given point what the app state is.
+
+Makes it possible for debug dumps of app state.
+
+Guro: DRAW SOMETHING
 
 ---
 
 # Why Redux?
-## Less boilerplate, enforces top down approach
-## Active community (10300 vs 9500)
+## Encourages and enforces best-practices
+## Active community
+## Small API - easy to learn
+## No dispatcher
 ## Time travel debugging
+
+???
+
+Best-practices: immutability, pure functions
+
+Redux has 10300 stars on Github vs. Flux 9500
+
+Redux without sanity checks: 100 LOC
+
+"Cannot dispatch in the middle of a dispatch"
+
+Time travel: made possible by immutability and single state atom
 
 ---
 
 # App
 ## Advent Calendar
+## Windows - text, image, Spotify, YouTube
 ## Admin panel where you can add and delete windows
 
 ---
 
+class: middle
+
 # Redux demo
-## Action Creator
-## Action
-## Reducer
-## Connecting a component
+
+???
+
+* Action Creator
+* Action
+* Reducer
+* Connecting a component
 
 
 ---
 
-      Work it!
-___
+class: middle
 
-# Async
-## API calls belong in Action Creators (Reusability, separation of concerns, components should be concerned with data)
-## Redux (you can dispatch multiple actions from an Action Creator
+# Work it! (part 1)
 
 ---
-# Async
-## Example: API CALL
+
+---
+
+# API calls
+## API calls belong in Action Creators
+### * Reusability
+### * Separation of concerns
+
+???
+
+* Stores do data transformations
+* Components do data presentation
+
+---
+
+# API calls
+## Example
 ```javascript
 dispatch({ type: 'REQUEST_STARTED' });
-(...)
-if (...) { dispatch({ type: 'REQUEST_FAILED' }); }
-else { dispatch({ type: 'REQUEST_SUCCEDED' }); }
+
+request('/api', function (err, result) {
+  if (err) {
+    dispatch({ type: 'REQUEST_FAILED', err });
+  } else {
+    dispatch({ type: 'REQUEST_SUCCEDED', result });
+  }
+});
 ```
 
+???
+
+Redux example in README
+
 ---
 
-# Smart components and presentation components
-## Presentation components are pure/stateless functions
+# Presentation components
+## Pure/stateless functions
+## Input -> output - no side effects
 ## No internal state
-## input -> output - no side effects
-## A bonus is reusability
-## Smart components contain logic, can be connected to the store
-## Responsibility
+## Renders DOM or other presentation components
+
+???
+
+A bonus is reusability
 
 ---
-# this.setState (selvmotsigelse!)
-## Redux prinsipper -> aldri bruke setState
 
+# Smart components
+## Contain logic
+## Can be connected to the store
+## Do not render DOM (usually)
 
+???
+
+Sometimes rendering some DOM from a smart component makes sense - be pragmatic
+
+---
+
+# `this.setState`
+--
+
+## Sometimes it makes sense
+--
+
+## Things to consider
+### * Do you want the data to be there after navigating to another page and back?
+### * Do you need the data in another part of the app?
+### * Do you need time travel?
+
+???
+
+Examples: forms, modal dialogs
+
+---
+
+class: middle
+
+# Work it! (part 2)
+
+---
+
+---
+
+class: middle
+
+# Fin.
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">

@@ -33,7 +33,7 @@ Hint: Open the `Calendar` component (components/Calendar.js), note that since we
 
 When you have completed this task, actions should be firing in the redux dev tools inspector when you click on the calendar windows.
 
-### 2. Implement your first reducer: 
+### 2. Implement your first reducer 
 Open the file reducers/windows.js where the default state of the calendar is set. Note that the `opened` attribute 
 is set to `false` on all calendar windows. Currenty there is only a very simple reducer which you
 can expand to act on your newly created `OPEN_WINDOW` -action. Hint: See reducers/snowing.js for an example. Remember that mutating the state is bad practice and violates redux principles, so `Object.assign` https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign will be useful here. 
@@ -45,7 +45,7 @@ Now, it is time to learn how to fetch window data from the back-end. We have cre
 In the file db.json we have stored a mock database. Check out http://localhost:3000/api/windows , 
 this will be the url for your api calls. 
 
-The window data is needed to intitialize the app, so it is a good idea to fetch these data in the index.js file on the root.
+The window data is needed to intitialize the app. Later we will fetch this data in an action creator, but for now, we will start by fetching these data in the index.js file on the root.
 Here we have direct access to the `dispatch` function from the store object like so: 
 
 ```
