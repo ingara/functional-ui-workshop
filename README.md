@@ -90,7 +90,10 @@ superagent
   });
 ```
 
-Note that `response.body` is already a javascript object, so there is no need for `JSON.parse`.
+Note that `response.body` is already a javascript object, so there is no need
+for `JSON.parse`.
+
+You can find some useful snippets for our API in [API.md](API.md)
 
 Now call the `/api/windows` endpoint and dispatch a `WINDOW_FETCH` action on a
 successful (200 OK) response.
