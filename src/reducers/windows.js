@@ -14,9 +14,7 @@ const defaultState = [
   { day: 19, content: 'Bare fem dager til jul!!', type: 'text', opened: false },
   { day: 20, content: 'http://matblogg.trinesmatblogg.netdna-cdn.com/wp-content/uploads/2013/12/IMG_2843.jpg', type: 'image', opened: false },
   { day: 21, content: 'J1Z8SQ1OUa0', type: 'youtube', opened: false },
-  { day: 22, content: 'spotify:track:2TpxZ7JUBn3uw46aR7qd6V', type: 'spotify', opened: false },
-  { day: 23, content: 'brwTCromXuY', type: 'youtube', opened: false },
-  { day: 23, content: 'spotify:track:5YhmqI7XxMTqagUIsCTO95', type: 'spotify', opened: false }
+  { day: 22, content: 'spotify:track:5YhmqI7XxMTqagUIsCTO95', type: 'spotify', opened: false }
 ];
 
 export default function(state = defaultState, action = {}) {
