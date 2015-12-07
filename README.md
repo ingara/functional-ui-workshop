@@ -1,8 +1,9 @@
-# functional-ui-workshop
+# Functional-ui-workshop
 
 ## Intro
 
-Clone this repo
+Clone this repo:
+
 ```
 git clone https://github.com/ingara/functional-ui-workshop.git
 cd functional-ui-workshop
@@ -19,78 +20,112 @@ Start the webserver:
 npm start
 ```
 
-Open the project in your favorite editor
+Open the project in your favorite editor.
 
 ## Tasks
+
 ### 1. Implement your first action creator: `openWindow()`
-Open the file actions/appActions.js, this is where you will put all the actions in your app. Here you can implement an openWindow action creator. 
+Open the file `actions/appActions.js` - this is where you will put all the action creators in your app. Here you can implement an `openWindow` action creator.
+
 Hint: follow the pattern in `toggleSnow()`.
 
-Open the containers/Window.js file, here you can see that the `ClosedWindow`-component has an onClick handler,
-where we need to dispatch the `OPEN_WINDOW` action by calling the `openWindow`action creator. 
-To access the dispatch function we must `connect` the `Window` component to the redux `store`. 
-Hint: Open the `Calendar` component (components/Calendar.js), note that since we don't need anything from the state, the `connect` function can be called without an argument. 
+Now open the file `containers/Window.js`. Here you can see that the `ClosedWindow`
+component has an onClick handler which just prints to the console.
+Instead of printing to the console we want to dispatch the `OPEN_WINDOW` action
+by calling the `openWindow` action creator.
+
+To access the dispatch function we must `connect` the `Window` component to the
+redux `store`.
+
+Hint: see the `Calendar` component (`components/Calendar.js`) for inspiration.
+Note that since we don't need anything from the store, the `connect` function
+can be called without any arguments.
 
 When you have completed this task, actions should be firing in the redux dev tools inspector when you click on the calendar windows.
 
-### 2. Implement your first reducer 
-Open the file reducers/windows.js where the default state of the calendar is set. Note that the `opened` attribute 
-is set to `false` on all calendar windows. Currenty there is only a very simple reducer which you
-can expand to act on your newly created `OPEN_WINDOW` -action. Hint: See reducers/snowing.js for an example. Remember that mutating the state is bad practice and violates redux principles, so `Object.assign` https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign will be useful here. 
+
+### 2. Implement your first reducer
+Open the file `reducers/windows.js` where you will find the default state for
+our calendar.
+Note that the `opened` attribute is set to `false` on all calendar windows.
+Currently this is only a very simple reducer which you
+can expand to act on your newly created `OPEN_WINDOW` action.
+
+Hint: See reducers/snowing.js for an example. Remember that mutating the state is
+bad practice and violates redux principles, so
+[`Object.assign`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+will be useful here.
 
 When you have completed this task, you should be able to open all the calendar windows
 
 ### 3. Async actions
-Now, it is time to learn how to fetch window data from the back-end. We have created a fake REST-API using https://www.npmjs.com/package/json-server 
-In the file db.json we have stored a mock database. Check out http://localhost:3000/api/windows , 
-this will be the url for your api calls. 
+Now, it is time to learn how to fetch window data from the backend.
 
-The window data is needed to intitialize the app. Later we will fetch this data in an action creator, but for now, we will start by fetching these data in the index.js file on the root.
-Here we have direct access to the `dispatch` function from the store object like so: 
+We have created a fake REST-API using [json-server](https://www.npmjs.com/package/json-server).
+In the file `db.json` we have stored some data which you can check out at
+http://localhost:3000/api/windows. This will also be the url for your api calls.
 
-```
+We want to fetch the data from `/api/windows` and use this to initialize our app.
+Later on we will fetch this data in an action creator, but for now we will start
+by doing it directly in the `index.js` file.
+
+Since we have access to the `store` object we can use the `dispatch` function
+like this:
+
+```javascript
 store.dispatch(SOME_ACTION)
 ```
 
-We will be using superagent https://www.npmjs.com/package/superagent as our client http request library, and we have 
-included this in node_modules, however you are free to use other libraries if you wish.
-Example get request using superagent: 
+We will be using [`superagent`](https://www.npmjs.com/package/superagent) for
+http requests in our examples (and it is already present in `node_modules`),
+however you are free to use other libraries if you wish.
 
-```
+Example get request using superagent:
+
+```javascript
 superagent
-.get('/some-url')
-.end(function(err, response){
-    // Do something 
-});
+  .get('/some-url')
+  .end(function(err, response){
+      // Do something
+  });
 ```
+
 Note that `response.body` is already a javascript object, so there is no need for `JSON.parse`.
 
-Start by calling the api with superagent, and dispatch a `WINDOW_FETCH`-action on the store on 
-a successfull (200 OK) request. Test to see if it works by inspecting the dev tools panel.
+Now call the `/api/windows` endpoint and dispatch a `WINDOW_FETCH` action on a
+successful (200 OK) response.
+Test to see if it works by inspecting the dev tools panel.
 
-Now it is time to implement the corresponding reducer in reducers/windows.js. First, set `initial state = []` , since we will now fetch the window data from the response returned from the API. Next, expand the switch statement to act
-on your new `WINDOW_FETCH` action.
+Now it is time to implement the corresponding reducer in reducers/windows.js.
+First, set `defaultState = []` since we will now fetch the window data from the
+response returned from the API.
+Next, expand the switch statement to act on your new `WINDOW_FETCH` action.
 
-When you have completed this task you should be able to open all the windows with the new data.
+When you have completed this task you should be able to open all the windows
+with the new data.
+
 
 ### 4. Async in an actionCreator
-Having your api calls scattered around in your components is messy and there is no separation of concerns. So 
-we would like to move our superagent request into an action. Open actions/apiActions.js where you will find
-an empty `fetchWindows` function. Now in our action creator we no longer have direct access to the `store`. 
+Having your api calls scattered around in your components is messy and there is
+no separation of concerns. So we would like to move our http request into
+an action, namely `fetchWindows` in `actions/apiActions.js`.
+In our action creator we no longer have direct access to the `dispatch`
+function on the `store` so what do we do?
 
-So far, our action creators have returned plain action objects such as: 
+So far our action creators have returned plain action objects such as:
 
-```
-toggleSnow() {
+```javascript
+function toggleSnow() {
   return {
     type: TOGGLE_SNOW
   }
 }
 ```
 
-In redux, action creators can also return functions. If you return a function, redux will, quite magicly, give you the dispatch-function as an argument, like so
+But in Redux, action creators can also return functions. If you return a function,
+you will get `dispatch` as an argument so we can do this:
 
-```
+```javascript
 asyncToggleSnow() {
  return dispatch => {
     dispatch({
@@ -99,24 +134,57 @@ asyncToggleSnow() {
   }
 }
 ```
-Use this together with the api call you implemented in index.js to create the fetchWindows actionCreator.
 
-Remember to replace the superagent call you had in index.js with `store.dispatch(ApiActions.fetchWindows())`.
+Use this together with the api call you implemented in `index.js` to create the
+`fetchWindows` actionCreator.
 
-When you have completed this task the app will be exactly the same, but your index.js file is much cleaner.
+Now you can replace the http request you had in index.js with
+`store.dispatch(ApiActions.fetchWindows())`.
+
+When you have completed this task the app will be exactly the same, but your
+index.js file is much cleaner.
+
 
 ### 5. Smart and dumb components
-In the `Form` component in containers/Form.js there is quite a lot of code and it is difficult to grasp what is going on.
-Try to extract small dumb/pure components out of this monster. These pure component definitions might come in hand:
+In the `Form` (`containers/Form.js`) there is quite a lot of code and it is
+difficult to grasp what is going on.
+Try to extract small and pure presentation components from this monster.
 
-A pure component receives all its data as props, like a function receives all its data as arguments. It should have no side effects, including reading data from anywhere else, initiating network requests, etc.
+These definitions might come in handy:
 
-A pure component generally has no internal state. What it renders is fully driven by its input props. Rendering the same pure component twice with the same props should result in the same UI. There's no hidden state inside the component that would cause the UI to differ between the two renders.
+* A pure component receives all its data as props, just like a pure function
+receives all its data as arguments.
+* A pure component should have no side effects, including reading data from
+anywhere else, initiating network requests, etc.
+
+A pure component has no internal state; what it renders is fully driven by its
+input props. Rendering the same pure component twice with the same props will
+therefore result in the exact same DOM. That is because there is no hidden state
+inside the component that would cause the UI to differ between the two renders.
+
 
 ### Note about state
-When it comes to state and forms, the top-down unidirectional flow pattern becomes tricky. Applying this principle to redux means that all state information is put in the store, and all events (mutations of state) trigger actions. Thus, there should be no need to use React's `setState()`. However, when it comes to forms this principle is debatable, emitting an action on every key stroke of an input field seems a bit extreme. We think a better approach is to create a higher order componet that can be concerned with the state of the form. In the solution we give an example of this, where we have used function composition to create a higher order component that takes care of the form's state (containers/Form.jsx, utils/withState.js and utils/compose.js).
+When it comes to state and forms, the top-down unidirectional flow pattern
+becomes somewhat tricky. Applying this principle to Redux means that all state
+information should be put in the store, and all events (mutations of state)
+trigger actions. Thus, there should be no need to use React's `setState()`.
+However, when it comes to forms this principle is debatable. Emitting an action
+on every key stroke of an input field seems a bit extreme.
+
+We think a better approach is to create a higher order component that can be
+concerned with the state of the form.
+In the solution we give an example of this, where we have used function
+composition to create a higher order component that takes care of the form's
+state (`containers/Form.jsx`, `utils/withState.js` and `utils/compose.js`).
+
 
 ### 6. More async action creators
-As you might have noticed, the windows created in the form on the Admin page disappear on refresh. This is because they are only stored in the state, see reducers/windows.js. It would be better if the action updated the database through an async api call. Based on what you have learned til now, try first changing the `createWindow()` to an async action creator that updates the mock database. Next, implement functionality for the dead delete button in the Admin panel.     
+As you might have noticed, the windows created in the form on the Admin page
+disappear when you refresh the page. This is because they are only stored in the
+app state - see `reducers/windows.js`. It would be better if the action updated
+our database through an async api call.
 
-
+Based on what you have learned, try changing the `createWindow()` to be an async
+action creator that sends a `POST` to `/api/windows` with a window object.
+Next, implement functionality for the dead delete button in the Admin panel.
+Hint: `json-server` supports `DELETE`.
