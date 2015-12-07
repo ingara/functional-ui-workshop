@@ -27,13 +27,102 @@ class: center, middle
 
 # Agenda
 
-1. Introduction
-2. Deep-dive
-3. ...
+## 1. Functional UI
+## 2. Data flow
+## 3. Redux
+
 
 ---
 
-# Introduction
+# Fuctional UI
+## Small building blocks
+## Pure building blocks
+## Testability
+
+
+---
+
+# Data flow
+## Unidirectional data flow
+
+```
+         +------+
+         |      |
+    +----> View +-----+
+    |    |      |     |
+    |    +------+     |
++---+---+        +----v---+
+|       |        |        |
+| Store <--------+ Action |
+|       |        |        |
++-------+        +--------+
+```
+
+
+
+# Data flow
+## Redux and flux
+## Single state atom = single source of truth
+## Data propagates down from the top
+## A given in Redux, but possible...
+## Easy to follow data flow
+
+---
+
+# Why Redux?
+## Less boilerplate, enforces top down approach
+## Active community (10300 vs 9500)
+## Time travel debugging
+
+---
+
+# App
+## Advent Calendar
+## Admin panel where you can add and delete windows
+
+---
+
+# Redux demo
+## Action Creator
+## Action
+## Reducer
+## Connecting a component
+
+
+---
+
+      Work it!
+___
+
+# Async
+## API calls belong in Action Creators (Reusability, separation of concerns, components should be concerned with data)
+## Redux (you can dispatch multiple actions from an Action Creator
+
+---
+# Async
+## Example: API CALL
+```javascript
+dispatch({ type: 'REQUEST_STARTED' });
+(...)
+if (...) { dispatch({ type: 'REQUEST_FAILED' }); }
+else { dispatch({ type: 'REQUEST_SUCCEDED' }); }
+```
+
+---
+
+# Smart components and presentation components
+## Presentation components are pure/stateless functions
+## No internal state
+## input -> output - no side effects
+## A bonus is reusability
+## Smart components contain logic, can be connected to the store
+## Responsibility
+
+---
+# this.setState (selvmotsigelse!)
+## Redux prinsipper -> aldri bruke setState
+
+
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
