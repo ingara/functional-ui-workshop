@@ -50,7 +50,8 @@ class Form extends React.Component {
       const window = {
         day: parseInt(this.state.day),
         content: this.state.text,
-        type: this.state.type
+        type: this.state.type,
+        opened: false,
       };
       dispatch(AppActions.createWindow(window));
       this.setState(initialState);

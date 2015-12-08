@@ -44,7 +44,8 @@ function Form({ validDays, createWindow, state, updateState }) {
     const window = {
       day: parseInt(state.day),
       content: state.text,
-      type: state.type
+      type: state.type,
+      opened: false,
     };
     createWindow(window);
     updateState(initialState);
