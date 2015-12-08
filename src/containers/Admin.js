@@ -1,12 +1,20 @@
 import React from 'react';
 import Form from './Form';
-import Overview from './WindowList';
+import WindowList from './WindowList';
+import OpenClose from '../components/OpenClose';
+import { connect } from 'react-redux';
+import { AppActions } from '../actions';
 
-function Admin() {
+function Admin({dispatch}) {
   return (<div className="admin-wrapper">
-    <Form/>
-    <Overview/>
+    <div className="left-menu">
+      <OpenClose openAll={() => dispatch(AppActions.openAllWindows()) }
+                 closeAll={ () => dispatch(AppActions.closeAllWindows()) }/>
+      <Form/>
+    </div>
+    <WindowList/>
   </div>);
 }
 
-export default Admin;
+
+export default connect()(Admin);

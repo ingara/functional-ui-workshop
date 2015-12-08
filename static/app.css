@@ -31,7 +31,6 @@ h3 {
   padding:0;
 }
 
-
 .nav-links {
   text-align: center;
   color: white;
@@ -51,7 +50,6 @@ ul {
   padding: 0;
   margin: 0 1em;
 }
-
 
 .editable-window {
   font-size: 1.2em;
@@ -105,11 +103,21 @@ button {
   letter-spacing: -.01em;
   line-height: 1.5;
   color: white;
-  border: 0.2em white solid;
+  border: 0.1em white solid;
   transition: all .2s ease-in-out;
   background-color: transparent;
   cursor: pointer;
   margin: 1em;
+}
+
+.button-big {
+  margin: 1em 2em;
+  font-family: 'Slabo 27px', serif;
+}
+
+.left-menu {
+  float: left;
+  width: 20em;
 }
 
 .button:hover {
@@ -131,6 +139,14 @@ table {
 table, tr, th, td {
   border: 1px solid white;
   padding: 1em;
+}
+
+td {
+  font-size: 0.9em;
+}
+
+th {
+  font-size: 1.1em;
 }
 
 table {

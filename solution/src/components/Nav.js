@@ -5,7 +5,7 @@ function Nav() {
   return (
     <ul className="nav-links">
       <li><Link to="/">Calendar</Link></li>
-      <li><Link to="/form">Form</Link></li>
+      <li><Link to="/form">Admin</Link></li>
     </ul>
   );
 }
