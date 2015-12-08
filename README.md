@@ -24,24 +24,28 @@ Open the project in your favorite editor.
 
 ## Tasks
 
-### 1. Implement your first action creator: `openWindow()`
-Open the file `actions/appActions.js` - this is where you will put all the action creators in your app. Here you can implement an `openWindow` action creator.
+### 1. Implement your first action creator: `openAllWindows()`
+If you go to the Admin page in the browser, there are two buttons there, "Open all windows" and "Close all windows". Currently these are inactive, we are going to activate them using the redux state pattern.
+
+Open the file `actions/appActions.js` - this is where you will put all the action creators in your app. Here you can implement an `openAllWindows` action creator.
 
 Hint: follow the pattern in `toggleSnow()`.
 
-Now open the file `containers/Window.js`. Here you can see that the `ClosedWindow`
-component has an onClick handler which just prints to the console.
-Instead of printing to the console we want to dispatch the `OPEN_WINDOW` action
-by calling the `openWindow` action creator.
+Now open the file `containers/Admin.js`. Here you can see that the `OpenClose`
+component has an `openAll` onClick handler which just prints to the console.
+Instead of printing to the console we want to dispatch the `WINDOW_OPEN_ALL` action
+by calling the `openAllWindows` action creator.
 
-To access the dispatch function we must `connect` the `Window` component to the
+To access the dispatch function, we must `connect` the `Admin` component to the
 redux `store`.
 
 Hint: see the `Calendar` component (`components/Calendar.js`) for inspiration.
 Note that since we don't need anything from the store, the `connect` function
 can be called without any arguments.
 
-When you have completed this task, actions should be firing in the redux dev tools inspector when you click on the calendar windows.
+When you have completed this task, actions should be firing in the redux dev tools inspector when you click on the "Open all windows" button.
+
+TIP: ctrl + h toggles the visibility of the dev tools inspector.
 
 
 ### 2. Implement your first reducer
@@ -49,7 +53,7 @@ Open the file `reducers/windows.js` where you will find the default state for
 our calendar.
 Note that the `opened` attribute is set to `false` on all calendar windows.
 Currently this is only a very simple reducer which you
-can expand to act on your newly created `OPEN_WINDOW` action.
+can expand to act on your newly created `WINDOW_OPEN_ALL` action.
 
 Hint: See reducers/snowing.js for an example. Remember that mutating the state is
 bad practice and violates redux principles, so
@@ -58,7 +62,14 @@ will be useful here.
 
 When you have completed this task, you should be able to open all the calendar windows
 
-### 3. Async actions
+### 3. Practicing the pattern
+As an Admin, the "Close all windows" button is very useful. Implement this functionality as well.
+
+Now it is time to focus on the calendar. On the calendar page, we want the calendar windows to open when we click on them.
+Open the file `containers/Window.js`. Here you can see that the `ClosedWindow`
+component has an empty onClick handler. Start by creating an action creator which you can dispatch here and continue expanding the windows reducer (`reducers/windows.js`) to act on your new `WINDOW_OPEN` action .   
+
+### 4. Async actions
 Now, it is time to learn how to fetch window data from the backend.
 
 We have created a fake REST-API using [json-server](https://www.npmjs.com/package/json-server).
@@ -108,7 +119,7 @@ When you have completed this task you should be able to open all the windows
 with the new data.
 
 
-### 4. Async in an actionCreator
+### 5. Async in an actionCreator
 Having your api calls scattered around in your components is messy and there is
 no separation of concerns. So we would like to move our http request into
 an action, namely `fetchWindows` in `actions/apiActions.js`.
@@ -148,7 +159,7 @@ When you have completed this task the app will be exactly the same, but your
 index.js file is much cleaner.
 
 
-### 5. Smart and dumb components
+### 6. Smart and dumb components
 In the `Form` (`containers/Form.js`) there is quite a lot of code and it is
 difficult to grasp what is going on.
 Try to extract small and pure presentation components from this monster.
@@ -181,7 +192,7 @@ composition to create a higher order component that takes care of the form's
 state (`containers/Form.jsx`, `utils/withState.js` and `utils/compose.js`).
 
 
-### 6. More async action creators
+### 7. More async action creators
 As you might have noticed, the windows created in the form on the Admin page
 disappear when you refresh the page. This is because they are only stored in the
 app state - see `reducers/windows.js`. It would be better if the action updated
