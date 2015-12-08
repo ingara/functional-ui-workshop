@@ -30,22 +30,27 @@ class: center, middle
 
 # Agenda
 
-### 1. Functional UI
-### 2. Data flow
-### 3. Redux
+### * Functional UI
+### * Data flow
+### * Redux
+### * Component structuring
 
 ---
 
-# Fuctional UI
+# Functional UI
 ## Small building blocks
 ## Pure building blocks
 ## Testability
 
+???
+
+Pure bb: input->output, no side-effects
+
+Testability is a consequence
+
 ---
 
 # Unidirectional data flow
-
-## Basically the same in Redux and Flux
 
 ```
          +------+
@@ -59,6 +64,12 @@ class: center, middle
 |       |        |        |
 +-------+        +--------+
 ```
+
+???
+
+Basically the same in Redux as in Flux, only simpler
+
+Some helpers in between: action creators, reducers
 
 ---
 
@@ -103,6 +114,10 @@ Time travel: made possible by immutability and single state atom
 ## Advent Calendar
 ## Windows - text, image, Spotify, YouTube
 ## Admin panel where you can edit the calendar
+
+???
+
+It's Guro time!
 
 ---
 
@@ -211,6 +226,10 @@ class: middle
 class: middle
 
 # Fin.
+
+???
+
+Thanks: Stian, Erik, Mikael
 
     </textarea>
     <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
