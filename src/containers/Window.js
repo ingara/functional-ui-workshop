@@ -29,7 +29,7 @@ function Window({ window }) {
   const windowComponent = window.opened ?
     getOpenWindow(window) :
     <ClosedWindow
-      onClick={ () => console.log(`Closed window ${window.day} clicked!`) }
+      onClick={ () => {} }
       text={ window.day } />;
 
   return (

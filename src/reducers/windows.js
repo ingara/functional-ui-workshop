@@ -24,12 +24,6 @@ export default function(state = defaultState, action = {}) {
       ...state,
       action.window
     ];
-  case AppActions.WINDOW_CLOSE_ALL:
-    return state.map(w =>
-        Object.assign({}, w, { opened: false }));
-  case AppActions.WINDOW_OPEN_ALL:
-    return state.map(w =>
-        Object.assign({}, w, { opened: true }));
   default:
     return state;
   }

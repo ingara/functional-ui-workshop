@@ -2,14 +2,12 @@ import React from 'react';
 import Form from './Form';
 import WindowList from './WindowList';
 import OpenClose from '../components/OpenClose';
-import { connect } from 'react-redux';
-import { AppActions } from '../actions';
 
-function Admin({dispatch}) {
+function Admin() {
   return (<div className="admin-wrapper">
     <div className="left-menu">
-      <OpenClose openAll={() => dispatch(AppActions.openAllWindows()) }
-                 closeAll={ () => dispatch(AppActions.closeAllWindows()) }/>
+      <OpenClose openAll={() => console.log('Open all windows') }
+                 closeAll={() => console.log('Close all windows') }/>
       <Form/>
     </div>
     <WindowList/>
@@ -17,4 +15,4 @@ function Admin({dispatch}) {
 }
 
 
-export default connect()(Admin);
+export default Admin;
