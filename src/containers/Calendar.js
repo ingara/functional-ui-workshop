@@ -21,7 +21,7 @@ function Calendar({ calendarClass, windows, dispatch }) {
 Calendar.propTypes = {
   windows: PropTypes.array.isRequired,
   calendarClass: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func
 };
 
 function mapStateToProps({ snowing, windows }) {

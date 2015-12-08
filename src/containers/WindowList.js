@@ -8,7 +8,7 @@ function WindowList({ windows }) {
       <td>#{ window.day }</td>
       <td>{ window.type }</td>
       <td>{ window.content }</td>
-      <td>Delete</td>
+      <td>{ window.opened.toString() }</td>
     </tr>
   );
 
@@ -21,7 +21,7 @@ function WindowList({ windows }) {
             <th>Day</th>
             <th>Type</th>
             <th>Content</th>
-            <th></th>
+            <th>Opened</th>
           </tr>
         </thead>
         <tbody>{ windowRows }</tbody>

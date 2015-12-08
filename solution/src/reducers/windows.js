@@ -4,6 +4,12 @@ const defaultState = [];
 
 export default function(state = defaultState, action) {
   switch (action.type) {
+  case AppActions.WINDOW_CLOSE_ALL:
+    return state.map(w =>
+      Object.assign({}, w, { opened: false }));
+  case AppActions.WINDOW_OPEN_ALL:
+    return state.map(w =>
+      Object.assign({}, w, { opened: true }));
   case AppActions.WINDOW_OPEN:
     return state.map(w =>
         action.day === w.day ?

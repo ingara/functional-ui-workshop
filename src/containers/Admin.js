@@ -1,12 +1,18 @@
 import React from 'react';
 import Form from './Form';
-import Overview from './WindowList';
+import WindowList from './WindowList';
+import OpenClose from '../components/OpenClose';
 
 function Admin() {
   return (<div className="admin-wrapper">
-    <Form/>
-    <Overview/>
+    <div className="left-menu">
+      <OpenClose openAll={() => console.log('Open all windows') }
+                 closeAll={() => console.log('Close all windows') }/>
+      <Form/>
+    </div>
+    <WindowList/>
   </div>);
 }
+
 
 export default Admin;
