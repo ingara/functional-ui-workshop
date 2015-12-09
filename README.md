@@ -34,14 +34,14 @@ Hint: follow the pattern in `toggleSnow()`.
 Now open the file `containers/Admin.js`. Here you can see that the `OpenClose`
 component has an `openAll` onClick handler which just prints to the console.
 Instead of printing to the console we want to dispatch the `WINDOW_OPEN_ALL` action
-by calling the `openAllWindows` action creator. 
+by calling the `openAllWindows` action creator.
 
 To access the dispatch function, we must `connect` the `Admin` component to the
 redux `store`.
 
 Hint: see the `Calendar` component (`components/Calendar.js`) for inspiration.
 Note that since we don't need anything from the store, the `connect` function
-can be called without any arguments. Remember to take in `dispatch` as an argument in your stateless Admin component. 
+can be called without any arguments. Remember to take in `dispatch` as an argument in your stateless Admin component.
 
 When you have completed this task, actions should be firing in the redux dev tools inspector when you click on the "Open all windows" button.
 
@@ -200,5 +200,3 @@ our database through an async api call.
 
 Based on what you have learned, try changing the `createWindow()` to be an async
 action creator that sends a `POST` to `/api/windows` with a window object.
-Next, implement functionality for the dead delete button in the Admin panel.
-Hint: `json-server` supports `DELETE`.
