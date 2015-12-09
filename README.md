@@ -25,9 +25,14 @@ Open the project in your favorite editor.
 ## Tasks
 
 ### 1. Implement your first action creator: `openAllWindows()`
-If you go to the Admin page in the browser, there are two buttons there, "Open all windows" and "Close all windows". Currently these are inactive, we are going to activate them using the redux state pattern.
+If you go to the Admin page in the browser, there are two buttons:
+"Open all windows" and "Close all windows".
+Currently these are inactive but we are going to activate them using the
+redux state pattern.
 
-Open the file `actions/appActions.js` - this is where you will put all the action creators in your app. Here you can implement an `openAllWindows` action creator.
+Open the file `actions/appActions.js` - this is where you will put all the
+action creators in your app.
+Here you can implement an `openAllWindows` action creator.
 
 Hint: follow the pattern in `toggleSnow()`.
 
