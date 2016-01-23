@@ -4,7 +4,7 @@ const defaultState = {
   active: false
 };
 
-export default function(state = defaultState, action = {}) {
+export default function(state = defaultState, action) {
   switch (action.type) {
   case AppActions.TOGGLE_SNOW:
     return Object.assign({}, state, { active: !state.active });

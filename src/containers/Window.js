@@ -1,4 +1,5 @@
 import React, { PropTypes, } from 'react';
+import { connect } from 'react-redux';
 import {
   ClosedWindow,
   TextWindow,
@@ -6,9 +7,9 @@ import {
   SpotifyWindow,
   YouTubeWindow
 } from '../components';
-import { connect } from 'react-redux';
-import { AppActions } from '../actions';
 import { windowTypes } from '../constants';
+
+import { AppActions } from '../actions';
 
 function getOpenWindow(window) {
   const { content, type } = window;
@@ -25,11 +26,11 @@ function getOpenWindow(window) {
   }
 }
 
-function Window({ window }) {
+function Window({ window, openWindow }) {
   const windowComponent = window.opened ?
     getOpenWindow(window) :
     <ClosedWindow
-      onClick={ () => {} }
+      onClick={ () => openWindow(window.day) }
       text={ window.day } />;
 
   return (
@@ -41,7 +42,7 @@ function Window({ window }) {
 
 Window.propTypes = {
   window: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired
+  openWindow: PropTypes.func.isRequired
 };
 
-export default Window;
+export default connect(null, { openWindow: AppActions.openWindow })(Window);

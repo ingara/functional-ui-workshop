@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { AppActions } from '../actions';
-import { range } from '../utils';
+import { ApiActions } from '../actions';
+import { InputField, DaySelect, TypeSelect } from '../components';
+import { withState, compose, range } from '../utils';
 import {
   isValidText,
   isValidImageUrl,
@@ -27,100 +28,53 @@ function validate({ text, type }) {
 
 const initialState = { text: '', type: 'text' };
 
-class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
-  render() {
-    const { validDays, dispatch } = this.props;
+function Form({ validDays, createWindow, state, updateState }) {
+  const handleTypeChange = type => {
+    const { text } = state;
+    updateState({ type, validationError: validate({ text, type }) });
+  };
+  const handleTextChange = text => {
+    const { type } = state;
+    updateState({ text, validationError: validate({ text, type }) });
+  };
+  const handleDayChange = day => updateState({ day });
 
-    const handleTypeChange = type => {
-      const { text } = this.state;
-      this.setState({ type, validationError: validate({ text, type }) });
+  const handleSubmit = e => {
+    e.preventDefault();
+    const window = {
+      day: parseInt(state.day),
+      content: state.text,
+      type: state.type,
+      opened: false,
     };
-    const handleTextChange = text => {
-      const { type } = this.state;
-      this.setState({ text, validationError: validate({ text, type }) });
-    };
-    const handleDayChange = day => this.setState({ day });
+    createWindow(window);
+    updateState(initialState);
+  };
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      const window = {
-        day: parseInt(this.state.day),
-        content: this.state.text,
-        type: this.state.type,
-        opened: false,
-      };
-      dispatch(AppActions.createWindow(window));
-      this.setState(initialState);
-    };
+  const canSubmit = state.validationError === null && state.day;
+  const types = [
+    windowTypes.TEXT,
+    windowTypes.IMAGE,
+    windowTypes.SPOTIFY,
+    windowTypes.YOUTUBE,
+  ];
 
-    const canSubmit = this.state.validationError === null && this.state.day;
-    const types = [
-      windowTypes.TEXT,
-      windowTypes.IMAGE,
-      windowTypes.SPOTIFY,
-      windowTypes.YOUTUBE,
-    ];
-
-    const radios = types.map(type => {
-      const id = `windowtype${type}`;
-      return (
-        <li key={ type }>
-          <input
-            type="radio"
-            name="type"
-            id={ id }
-            label={ type }
-            checkedLink={{
-              value: this.state.type === type,
-              requestChange: () => handleTypeChange(type)
-            }} />
-          <label htmlFor={ id }>{ type }</label>
-        </li>
-      );
-    });
-    const dayOptions = validDays
-      .map(day => <option key={ `dayOption${day}` } label={ day } value={ day } />);
-
-    return (
-      <form>
-        <h3>New Window</h3>
-        <ul>{ radios }</ul>
-        <div>
-          <label htmlFor="daySelect">Day</label>
-          <select
-            name="day"
-            id="daySelect"
-            valueLink={{
-              value: this.state.day,
-              requestChange: day => handleDayChange(parseInt(day))
-            }}
-            defaultValue="none">
-            <option label="Choose day" value="none" disabled />
-            { dayOptions }
-          </select>
-        </div>
-        <div>
-          <input
-            type="text"
-            valueLink={{
-              value: this.state.text,
-              requestChange: handleTextChange
-            }} />
-          <div>{ this.state.validationError }</div>
-        </div>
-        <button type="submit" onClick={ handleSubmit } disabled={ !canSubmit }> Save</button>
-      </form>
-    );
-  }
+  return (
+    <form>
+      <h3>New Window</h3>
+      <TypeSelect types={ types } selectedType={ state.type } onChange={ handleTypeChange } />
+      <DaySelect days={ validDays } selectedDay={ state.day } onChange={ handleDayChange } />
+      <InputField value={ state.text } validationError={ state.validationError } onChange={ handleTextChange } />
+      <button type="submit" onClick={ handleSubmit } disabled={ !canSubmit }> Save</button>
+    </form>
+  );
 }
 
 Form.propTypes = {
   validDays: PropTypes.arrayOf(PropTypes.number).isRequired,
-  dispatch: PropTypes.func.isRequired
+  createWindow: PropTypes.func.isRequired,
+  state: PropTypes.object.isRequired,
+  updateState: PropTypes.func.isRequired
 };
 
 function mapStateToProps({ windows }) {
@@ -131,4 +85,7 @@ function mapStateToProps({ windows }) {
   };
 }
 
-export default connect(mapStateToProps)(Form);
+export default compose(
+  connect(mapStateToProps, { createWindow: ApiActions.createWindow }),
+  withState(initialState)
+)(Form);
