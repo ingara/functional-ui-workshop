@@ -4,7 +4,7 @@
 body {
   font-family: 'Slabo 27px', serif;
   margin:0;
-  background-color: #333;
+  background-color: #5D8DD7;
   font-size: 14px;
 }
 
@@ -26,14 +26,14 @@ h3 {
   font-size: 1.4em;
   font-weight: normal;
   text-align: center;
-  color: white;
+  color: #292428;
   margin: 0;
   padding:0;
 }
 
 .nav-links {
   text-align: center;
-  color: white;
+  color: #292428;
   font-size: 1.6em;
 }
 
@@ -42,10 +42,11 @@ ul {
 }
 
 .nav-links a {
-  color: white;
+  color: #292428;
 }
 
 .nav-links li {
+  font-size: 1.2em;
   display: inline-block;
   padding: 0;
   margin: 0 1em;
@@ -170,10 +171,10 @@ table {
   margin: 2em 2em;
   padding: 1em;
   display: inline-block;
-  background-color: #4B0082;
-  color: white;
+  background-color: white;
+  color: #292428;
   text-align: center;
-  border: 0.1em solid white;
+  border: 0.2em solid #292428;
 }
 
 .window-content {
