@@ -4,7 +4,7 @@
 body {
   font-family: 'Slabo 27px', serif;
   margin:0;
-  background-color: #333;
+  background-color: #5D8DD7;
   font-size: 14px;
 }
 
@@ -26,14 +26,14 @@ h3 {
   font-size: 1.4em;
   font-weight: normal;
   text-align: center;
-  color: white;
+  color: #292428;
   margin: 0;
   padding:0;
 }
 
 .nav-links {
   text-align: center;
-  color: white;
+  color: #292428;
   font-size: 1.6em;
 }
 
@@ -42,10 +42,11 @@ ul {
 }
 
 .nav-links a {
-  color: white;
+  color: #292428;
 }
 
 .nav-links li {
+  font-size: 1.2em;
   display: inline-block;
   padding: 0;
   margin: 0 1em;
@@ -70,13 +71,20 @@ form {
   float: left;
   margin: 2em;
   text-align: left;
-  color: white;
-  border: 0.2em solid white;
+  background-color: white;
+  color: #292428;
+  border: 0.2em solid #292428;
   padding: 3em;
 }
 
 input[type=radio] {
   margin: 0.5em 1em 0.5em 0;
+}
+
+input {
+  border: 0.2em solid #292428;
+  height: 2em;
+  font-size: 1em;
 }
 
 label {
@@ -102,10 +110,10 @@ button {
   font-size: 1.1em;
   letter-spacing: -.01em;
   line-height: 1.5;
-  color: white;
-  border: 0.1em white solid;
+  color: #292428;
+  border: 0.2em #292428 solid;
   transition: all .2s ease-in-out;
-  background-color: transparent;
+  background-color: white;
   cursor: pointer;
   margin: 1em;
 }
@@ -131,13 +139,13 @@ button[disabled=disabled], button:disabled {
 
 table {
   text-align: left;
-  color: white;
+  color: #292428;
   border-collapse: collapse;
   padding: 2em;
 }
 
 table, tr, th, td {
-  border: 1px solid white;
+  border: 1px solid #292428;
   padding: 1em;
 }
 
@@ -157,7 +165,8 @@ table {
   float: left;
   margin: 2em;
   padding: 3em;
-  border: 0.2em solid white;
+  background-color: white;
+  border: 0.2em solid #292428;
 }
 
 .snow-bar {
@@ -170,10 +179,10 @@ table {
   margin: 2em 2em;
   padding: 1em;
   display: inline-block;
-  background-color: #4B0082;
-  color: white;
+  background-color: white;
+  color: #292428;
   text-align: center;
-  border: 0.1em solid white;
+  border: 0.2em solid #292428;
 }
 
 .window-content {
